@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Zeeshan Fazal, PhD — Bioinformatics Resume</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy:      #0a2342;
+      --blue:      #2d5f9e;
+      --blue-lt:   #4a80c4;
+      --bg-side:   #f0f5fb;
+      --bg-tag:    #deeaf8;
+      --tag-text:  #1a3a6b;
+      --border:    #c8d8ed;
+      --text:      #1a1a1a;
+      --muted:     #555;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 10pt;
+      color: var(--text);
+      background: #fff;
+      max-width: 8.5in;
+      margin: 0 auto;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── HEADER ── */
+    .hdr {
+      background: var(--navy);
+      color: #fff;
+      padding: 20px 30px 14px;
+    }
+    .hdr-name  { font-size: 25pt; font-weight: 700; letter-spacing: 0.3px; line-height: 1; }
+    .hdr-title { font-size: 10.5pt; color: #a8c5e8; margin: 4px 0 10px; font-style: italic; }
+    .hdr-links { display: flex; flex-wrap: wrap; gap: 5px 16px; font-size: 9pt; color: #cde; }
+    .hdr-links a { color: #a8c5e8; transition: color .15s; }
+    .hdr-links a:hover { color: #fff; text-decoration: none; }
+
+    /* ── METRICS BAR ── */
+    .metrics {
+      display: flex;
+      background: var(--blue);
+    }
+    .metric {
+      flex: 1;
+      text-align: center;
+      padding: 7px 4px;
+      border-right: 1px solid rgba(255,255,255,.25);
+      transition: background .18s;
+    }
+    .metric:last-child { border-right: none; }
+    .metric:hover { background: var(--blue-lt); cursor: default; }
+    .metric .num { font-size: 14pt; font-weight: 700; color: #fff; line-height: 1.1; }
+    .metric .lbl { font-size: 7pt; text-transform: uppercase; letter-spacing: .5px; color: rgba(255,255,255,.8); }
+
+    /* ── LAYOUT ── */
+    .layout {
+      display: grid;
+      grid-template-columns: 215px 1fr;
+    }
+
+    /* ── SIDEBAR ── */
+    .side {
+      background: var(--bg-side);
+      padding: 16px 14px;
+      border-right: 1px solid var(--border);
+    }
+    .side h3 {
+      font-size: 8pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--navy);
+      border-bottom: 1.5px solid var(--blue);
+      padding-bottom: 2px;
+      margin: 14px 0 7px;
+    }
+    .side h3:first-child { margin-top: 0; }
+
+    /* skill tags */
+    .tags { display: flex; flex-wrap: wrap; gap: 3px 3px; }
+    .tag {
+      background: var(--bg-tag);
+      color: var(--tag-text);
+      font-size: 7.5pt;
+      padding: 2px 7px;
+      border-radius: 10px;
+      border: 1px solid #b5cfe8;
+      transition: background .14s, color .14s;
+      white-space: nowrap;
+    }
+    .tag:hover { background: var(--blue); color: #fff; border-color: var(--blue); cursor: default; }
+
+    /* edu */
+    .edu { margin-bottom: 8px; }
+    .edu-deg  { font-weight: 700; font-size: 9pt; color: var(--navy); }
+    .edu-sub  { font-size: 8pt; color: var(--muted); }
+    .edu-yr   { font-size: 8pt; font-weight: 700; color: var(--blue); }
+
+    /* awards / memberships */
+    .aw  { font-size: 8.5pt; margin-bottom: 6px; line-height: 1.4; }
+    .aw b { color: var(--navy); }
+    .mb  { font-size: 8pt; margin-bottom: 4px; color: var(--text); line-height: 1.35; }
+
+    /* ── MAIN ── */
+    .main { padding: 16px 22px; }
+
+    .main h2 {
+      font-size: 9pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--navy);
+      border-bottom: 1.5px solid var(--blue);
+      padding-bottom: 2px;
+      margin: 14px 0 7px;
+    }
+    .main h2:first-child { margin-top: 0; }
+
+    .summary { font-size: 9.5pt; line-height: 1.62; color: #222; }
+
+    /* job cards */
+    .job {
+      margin-bottom: 10px;
+      padding: 9px 12px;
+      border-left: 3px solid var(--border);
+      background: #fafcff;
+      border-radius: 0 4px 4px 0;
+      transition: border-color .18s, background .18s, box-shadow .18s;
+    }
+    .job:hover {
+      border-left-color: var(--blue);
+      background: #f3f8ff;
+      box-shadow: 0 2px 8px rgba(45,95,158,.10);
+    }
+    .job-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 5px;
+    }
+    .job-title { font-weight: 700; font-size: 10pt; color: var(--navy); }
+    .job-org   { font-style: italic; color: var(--blue); font-size: 9.5pt; }
+    .job-dates {
+      font-size: 8pt;
+      color: #fff;
+      background: var(--blue);
+      padding: 2px 9px;
+      border-radius: 10px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    ul { margin: 2px 0 0 14px; }
+    li { margin-bottom: 3px; font-size: 9pt; line-height: 1.5; }
+    li b { color: var(--navy); }
+
+    /* publications */
+    .pub { font-size: 9pt; margin-bottom: 5px; line-height: 1.42; padding-left: 18px; text-indent: -18px; }
+    .cite { color: var(--blue); font-weight: 700; font-size: 8.5pt; }
+
+    @media print {
+      @page { margin: 0.4in 0.45in; size: letter; }
+
+      .metric:hover { background: var(--blue); }
+      .job:hover    { border-left-color: var(--border); background: #fafcff; box-shadow: none; }
+      .tag:hover    { background: var(--bg-tag); color: var(--tag-text); border-color: #b5cfe8; }
+
+      body { max-width: 100%; font-size: 8pt; }
+
+      .hdr       { padding: 10px 18px 8px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .hdr-name  { font-size: 18pt; }
+      .hdr-title { font-size: 8.5pt; margin: 2px 0 6px; }
+      .hdr-links { font-size: 7.5pt; gap: 3px 12px; }
+
+      .metrics            { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .metric             { padding: 4px 3px; }
+      .metric .num        { font-size: 11pt; }
+      .metric .lbl        { font-size: 6pt; }
+
+      .layout { grid-template-columns: 175px 1fr; }
+
+      .side      { padding: 10px 10px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .side h3   { font-size: 6.5pt; margin: 9px 0 4px; }
+      .side h3:first-child { margin-top: 0; }
+      .tags      { gap: 2px; }
+      .tag       { font-size: 6pt; padding: 1px 5px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .edu       { margin-bottom: 5px; }
+      .edu-deg   { font-size: 7.5pt; }
+      .edu-sub   { font-size: 6.5pt; }
+      .edu-yr    { font-size: 6.5pt; }
+      .aw        { font-size: 7pt; margin-bottom: 4px; line-height: 1.35; }
+      .mb        { font-size: 6.5pt; margin-bottom: 3px; }
+
+      .main         { padding: 10px 16px; }
+      .main h2      { font-size: 7.5pt; margin-top: 9px; margin-bottom: 5px; }
+      .main h2:first-child { margin-top: 0; }
+      .summary      { font-size: 8pt; line-height: 1.5; }
+
+      .job        { margin-bottom: 6px; padding: 5px 8px; page-break-inside: avoid; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .job-title  { font-size: 9pt; }
+      .job-org    { font-size: 8pt; }
+      .job-dates  { font-size: 6.5pt; padding: 1px 7px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      ul          { margin-left: 12px; }
+      li          { font-size: 7.5pt; margin-bottom: 1px; line-height: 1.4; }
+
+      .pub  { font-size: 7.5pt; margin-bottom: 3px; line-height: 1.35; }
+      .cite { font-size: 7pt; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<div class="hdr">
+  <div class="hdr-name">Zeeshan Fazal, PhD</div>
+  <div class="hdr-title">Bioinformatics Scientist &nbsp;·&nbsp; Clinical Genomics &nbsp;·&nbsp; Transcriptomics &nbsp;·&nbsp; Multi-Omics Integration</div>
+  <div class="hdr-links">
+    <span>✉ zeeshan.fazal1986@gmail.com</span>
+    <a href="https://www.linkedin.com/in/zeeshan-fazal-42887476/">LinkedIn</a>
+    <a href="https://zeeshanfazal1986.github.io">Portfolio</a>
+    <a href="https://scholar.google.com/citations?user=VsZdu3QAAAAJ&hl=en">Google Scholar</a>
+    <a href="https://github.com/zeeshanfazal1986">GitHub</a>
+  </div>
+</div>
+
+<!-- ══ METRICS ══ -->
+<div class="metrics">
+  <div class="metric"><div class="num">818</div><div class="lbl">Total Citations</div></div>
+  <div class="metric"><div class="num">14</div><div class="lbl">h-index</div></div>
+  <div class="metric"><div class="num">18+</div><div class="lbl">Publications</div></div>
+  <div class="metric"><div class="num">8+</div><div class="lbl">NIH Research Programs</div></div>
+  <div class="metric"><div class="num">9+</div><div class="lbl">Years Experience</div></div>
+</div>
+
+<div class="layout">
+
+  <!-- ══ SIDEBAR ══ -->
+  <div class="side">
+
+    <h3>Clinical Genomics</h3>
+    <div class="tags">
+      <span class="tag">GATK / HaplotypeCaller</span>
+      <span class="tag">Mutect2</span>
+      <span class="tag">GEMINI</span>
+      <span class="tag">Exomiser</span>
+      <span class="tag">VEP</span>
+      <span class="tag">ANNOVAR</span>
+      <span class="tag">DeepVariant</span>
+      <span class="tag">DeepSomatic</span>
+      <span class="tag">Panel of Normals</span>
+      <span class="tag">mtDNA / Heteroplasmy</span>
+      <span class="tag">Telomere Analysis</span>
+      <span class="tag">IUIS Gene Lists</span>
+    </div>
+
+    <h3>Transcriptomics</h3>
+    <div class="tags">
+      <span class="tag">scRNA-seq</span>
+      <span class="tag">Bulk RNA-seq</span>
+      <span class="tag">Seurat</span>
+      <span class="tag">Cell Ranger</span>
+      <span class="tag">STAR / Salmon</span>
+      <span class="tag">DESeq2 / edgeR</span>
+      <span class="tag">GSEA</span>
+      <span class="tag">ChIP-Seq</span>
+      <span class="tag">ATAC-Seq</span>
+      <span class="tag">EPIC Arrays</span>
+    </div>
+
+    <h3>Pipelines &amp; Infrastructure</h3>
+    <div class="tags">
+      <span class="tag">Snakemake</span>
+      <span class="tag">SLURM / HPC</span>
+      <span class="tag">Git / GitHub</span>
+      <span class="tag">Docker / Conda</span>
+      <span class="tag">Cloud (AWS)</span>
+      <span class="tag">Claude Code</span>
+      <span class="tag">GitHub Copilot</span>
+    </div>
+
+    <h3>Languages</h3>
+    <div class="tags">
+      <span class="tag">Python (Pandas, NumPy, sklearn)</span>
+      <span class="tag">R / Bioconductor</span>
+      <span class="tag">Bash / Shell</span>
+      <span class="tag">SQL</span>
+    </div>
+
+    <h3>Databases</h3>
+    <div class="tags">
+      <span class="tag">gnomAD</span>
+      <span class="tag">ClinVar / OMIM</span>
+      <span class="tag">TCGA / GEO</span>
+      <span class="tag">cBioPortal</span>
+      <span class="tag">HPA / CCLE</span>
+    </div>
+
+    <h3>Education</h3>
+    <div class="edu">
+      <div class="edu-deg">PhD, Animal Sciences</div>
+      <div class="edu-sub">Bioinformatics Concentration</div>
+      <div class="edu-sub">Univ. of Illinois (UIUC)</div>
+      <div class="edu-yr">2017</div>
+    </div>
+    <div class="edu">
+      <div class="edu-deg">MS, Bioinformatics</div>
+      <div class="edu-sub">Univ. of Illinois (UIUC)</div>
+      <div class="edu-yr">2012</div>
+    </div>
+
+    <h3>Awards &amp; Honors</h3>
+    <div class="aw"><b>NASA Group Achievement Award</b>, 2018</div>
+<div class="aw"><b>UIUC Graduate Fellowship</b>, 2017</div>
+    <div class="aw"><b>Government of Pakistan Merit Fellowship</b>, 2010</div>
+    <div class="aw"><b>Institute Bronze Medal</b>, BS Bioinformatics, 2009</div>
+
+    <h3>Memberships</h3>
+    <div class="mb">American Society of Human Genetics (ASHG), 2024–</div>
+    <div class="mb">American Association for Cancer Research (AACR), 2019–</div>
+    <div class="mb">National Postdoctoral Association, 2019–</div>
+
+  </div>
+
+  <!-- ══ MAIN ══ -->
+  <div class="main">
+
+    <h2>Professional Summary</h2>
+    <p class="summary">
+      Bioinformatics PhD with 9+ years of experience in clinical genomics, transcriptomics, and multi-omics integration across immunology, rare disease, cancer, and infectious disease research — spanning NIH/NIAID, Fate Therapeutics, Stanford University, and UIUC. Deep expertise in WGS/WES somatic and germline variant calling (GATK, Mutect2), bulk and single-cell RNA-seq (including viral infection and immune response contexts), and scalable HPC pipeline development (Snakemake, SLURM). Consistent record of independently leading multi-cohort analyses and translating results into peer-reviewed publications (h-index 14, 818 citations, 18+ papers). Proficient in AI-assisted development with GitHub and Claude Code.
+    </p>
+
+    <h2>Professional Experience</h2>
+
+    <div class="job">
+      <div class="job-top">
+        <div>
+          <div class="job-title">Computational Genomics Specialist, Clinical</div>
+          <div class="job-org">Guidehouse Digital &nbsp;/&nbsp; NIH-NIAID (Contractor)</div>
+        </div>
+        <span class="job-dates">Feb 2023 – Present</span>
+      </div>
+      <ul>
+        <li><b>Somatic Variant Calling:</b> Built and deployed production-grade Mutect2/GATK workflows for large-scale WGS cohorts; constructed Panel of Normals (PONs) supporting ongoing immunology and molecular aging programs. Published: "Clinical relevance of mosaic variants detected by exome sequencing."</li>
+        <li><b>Germline &amp; Rare Disease Genomics:</b> Led end-to-end germline analysis (GATK, GEMINI, Exomiser) across 8+ rare disease, immunodeficiency, and infectious disease programs; integrated IUIS 2024 gene lists, inheritance modeling, and phenotype-driven filters for clinical-grade variant prioritization.</li>
+        <li><b>Multi-Modal Variant Annotation:</b> Executed GEMINI workflows in three modes (gene panel, exome-level, genome-level) across large WGS/WES cohorts, delivering consistent, publication-ready outputs across multiple concurrent PI programs.</li>
+        <li><b>Bulk RNA-seq:</b> Performed differential expression and pathway analyses of drug-exposed immune cells; characterized transcriptomic responses to antiretroviral therapies across multiple donors and treatment conditions.</li>
+        <li><b>Single-Cell RNA-seq:</b> Applied scRNA-seq workflows to resolve immune cell heterogeneity and transcriptomic states in viral infection and inflammatory disease contexts, supporting host-pathogen research programs.</li>
+        <li><b>Multi-Omics &amp; Aging:</b> Integrated somatic mutation burden and telomere length estimation to define molecular aging biomarkers; developed mitochondrial variant calling with heteroplasmy estimation, adopted by the NIH central sequencing program.</li>
+        <li><b>Infrastructure:</b> Built modular, reproducible pipelines (SLURM/Snakemake) with GitHub and Claude Code; enabled fast, reliable analytical turnaround across 8+ simultaneous research programs.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-top">
+        <div>
+          <div class="job-title">Bioinformatics Scientist</div>
+          <div class="job-org">Fate Therapeutics, Inc., San Diego, CA</div>
+        </div>
+        <span class="job-dates">Apr 2022 – Feb 2023</span>
+      </div>
+      <ul>
+        <li>Developed transcriptomic-based phenotype classification signatures supporting CAR-T and NK cell immunotherapy discovery programs.</li>
+        <li>Designed genomic alignment workflows for custom-engineered cell therapy clones, improving throughput and clone-level resolution.</li>
+        <li>Integrated transcriptomic and genomic datasets for therapeutic target identification across oncology indications.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-top">
+        <div>
+          <div class="job-title">Bioinformatics Postdoctoral Researcher / Research Scientist</div>
+          <div class="job-org">University of Illinois at Urbana-Champaign</div>
+        </div>
+        <span class="job-dates">Jun 2018 – Apr 2022</span>
+      </div>
+      <ul>
+        <li>Led integrative analysis of chemotherapy-resistant cancer models using RNA-Seq, ChIP-Seq, and Illumina EPIC methylation arrays; identified polycomb complex dysregulation as a key resistance mechanism.</li>
+        <li>Provided bioinformatics support for a Phase 1 clinical trial combining epigenetic and chemotherapy agents; published in <em>Cancer Medicine</em>.</li>
+        <li>Produced 8+ peer-reviewed publications; first-author papers in <em>Epigenetics</em> and <em>ACS Nano</em>.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-top">
+        <div>
+          <div class="job-title">Bioinformatics Postdoctoral Researcher</div>
+          <div class="job-org">Stanford University, Stanford, CA</div>
+        </div>
+        <span class="job-dates">Sep 2017 – May 2018</span>
+      </div>
+      <ul>
+        <li>Performed high-throughput virtual screening of ~2 million compounds to identify novel inhibitors of bacterial antioxidant systems; part of NASA-funded microgravity antibiotic resistance research.</li>
+        <li>Recipient of the <b>NASA Group Achievement Award</b> (2018) for contributions to the CubeSat biological experiment.</li>
+      </ul>
+    </div>
+
+    <h2>Selected Publications &nbsp;<span style="font-weight:400;font-size:8.5pt;color:#555">(18+ total &nbsp;·&nbsp; 818 citations &nbsp;·&nbsp; h-index 14 &nbsp;·&nbsp; <a href="https://scholar.google.com/citations?user=VsZdu3QAAAAJ&hl=en">Full list on Google Scholar</a>)</span></h2>
+
+    <p class="pub">1. <strong>Fazal Z</strong>, et al. "Clinical relevance of mosaic variants detected by exome sequencing." <em>Translational and Clinical Immunology</em>, 2026.</p>
+
+    <p class="pub">2. Shokry D, …, <strong>Fazal Z</strong>, et al. "Refractory testicular germ cell tumors are highly sensitive to the targeting of polycomb pathway demethylases KDM6A and KDM6B." <em>Cell Communication and Signaling</em>, 22(1), 528, 2024.</p>
+    <p class="pub">3. Boyd RI, …, <strong>Fazal Z</strong>, et al. "Perfluorooctanesulfonic Acid Alters Pro-Cancer Phenotypes and Metabolic and Transcriptional Signatures in Testicular Germ Cell Tumors." <em>Toxics</em>, 12(4), 232, 2024.</p>
+    <p class="pub">4. Boyd RI, Ahmad S, Singh R, <strong>Fazal Z</strong>, et al. "Toward a mechanistic understanding of poly- and perfluoroalkylated substances and cancer." <em>Cancers</em>, 14(12), 2919, 2022. <span class="cite">[131 citations]</span></p>
+    <p class="pub">5. Singh R, <strong>Fazal Z</strong>, et al. "Reciprocal epigenetic remodeling controls testicular cancer hypersensitivity to hypomethylating agents and chemotherapy." <em>Molecular Oncology</em>, 16(3), 683–698, 2022.</p>
+    <p class="pub">6. <strong>Fazal Z</strong>, Singh R, Fang F, et al. "Hypermethylation and global remodelling of DNA methylation is associated with acquired cisplatin resistance in testicular germ cell tumours." <em>Epigenetics</em>, 16(10), 1071–1084, 2021.</p>
+    <p class="pub">7. Albany C, <strong>Fazal Z</strong>, Singh R, et al. "A phase 1 study of combined guadecitabine and cisplatin in platinum refractory germ cell cancer." <em>Cancer Medicine</em>, 2020.</p>
+    <p class="pub">8. <strong>Fazal Z</strong>, Pelowitz J, et al. "Three-Dimensional Encapsulation of <em>Saccharomyces cerevisiae</em> in Silicate Matrices Creates Distinct Metabolic States as Revealed by Gene Chip Analysis." <em>ACS Nano</em>, 11(4), 3560–3575, 2017.</p>
+    <p class="pub">9. Jakobsson E, …, <strong>Fazal Z</strong>, et al. "Towards a unified understanding of lithium action in basic biology and its significance for applied biology." <em>Journal of Membrane Biology</em>, 250, 587–604, 2017. <span class="cite">[201 citations]</span></p>
+
+    <p class="pub">10. Akhtar MN, Bukhari SA, <strong>Fazal Z</strong>, Qamar R, Shahmuradov IA. "POLYAR, a new computer program for prediction of poly(A) sites in human sequences." <em>BMC Genomics</em>, 11, 1–10, 2010. <span class="cite">[64 citations]</span></p>
+
+  </div>
+</div>
+
+</body>
+</html>
